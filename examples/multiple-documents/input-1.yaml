@@ -1,0 +1,124 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#resource-backend
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource-backend
+spec:
+  rules:
+    # is there anybody out there?...
+  - http:
+      paths:
+      - path: /icons
+        backend:
+          resource:
+            apiGroup: k8s.example.com
+            kind: StorageBucket
+            name: icon-assets
+  backend:
+    resource:
+      apiGroup: k8s.example.com
+      kind: StorageBucket
+      name: static-assets
+    serviceName: ingress-resource-backend-svc
+    servicePort: http-backend
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: example-site-2
+  labels:
+    # comment woo
+    austin-powers: "yeah-baby"
+    austin-powers/mini-me: "was here"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts: ["example.com"]
+  rules:
+  - host: "example.com"
+    pathType: ImplementationSpecific
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: example-site-2
+          servicePort: http
+      - path: /another/path
+        backend:
+          serviceName: example-site-2
+          servicePort: http-another-path
+  - host: "example.com"
+    # blue 42
+    http:
+      paths:
+      - path: /assets
+        backend:
+          serviceName: assets-service
+          servicePort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: botkube
+  labels:
+    app.kubernetes.io/name: botkube
+    helm.sh/chart: botkube-v0.12.1
+    app.kubernetes.io/instance: botkube
+    app.kubernetes.io/managed-by: Helm
+    component: controller
+    app: botkube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: controller
+      app: botkube
+  template:
+    metadata:
+      labels:
+        component: controller
+        app: botkube
+      annotations:
+        checksum/config: 72d9f95c1cf5835dc7cbbb152cc825feca64ac6bb5e6f717558a4a5ec5d181dd
+    spec:
+      priorityClassName: "p4"
+      serviceAccountName: botkube-sa
+      containers:
+      - name: botkube
+        image: "infracloudio/botkube:v0.12.1"
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - name: config-volume
+          mountPath: "/config"
+        env:
+        - name: CONFIG_PATH
+          value: "/config/"
+        - name: LOG_LEVEL
+          value: "info"
+        - name: BOTKUBE_VERSION
+          value: v0.12.1
+        - name: METRICS_PORT
+          value: "2112"
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 300Mi
+          requests:
+            cpu: 10m
+            memory: 200Mi
+      volumes:
+      - name: config-volume
+        projected:
+          sources:
+          - configMap:
+              name: botkube-configmap
+          - secret:
+              name: botkube-communication-secret
+      securityContext:
+        runAsUser: 101
+        runAsGroup: 101

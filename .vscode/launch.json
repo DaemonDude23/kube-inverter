@@ -1,0 +1,42 @@
+{
+  "configurations": [
+    {
+      "args": [
+        "--debug",
+        "--output-file",
+        "./examples/multiple-documents/output-1.yaml",
+        "./examples/multiple-documents/input-1.yaml"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "name": "multiple-documents-and-output",
+      "program": "${workspaceFolder}/src/main.py",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "args": [
+        "--debug",
+        "./examples/in-place-update/input-1.yaml"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "name": "in-place-update",
+      "program": "${workspaceFolder}/src/main.py",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "args": [
+        "-h"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "name": "help",
+      "program": "${workspaceFolder}/src/main.py",
+      "request": "launch",
+      "type": "python"
+    }
+  ],
+  "version": "0.2.0"
+}
