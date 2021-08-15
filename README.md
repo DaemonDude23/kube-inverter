@@ -1,7 +1,7 @@
 **kube-inverter**
 
 - [Why](#why)
-- [This Tool's Purpose](#this-tools-purpose)
+- [What This Tool Does](#what-this-tool-does)
 - [Install](#install)
   - [Put it in Your `$PATH`](#put-it-in-your-path)
 - [CLI Usage](#cli-usage)
@@ -25,7 +25,7 @@ Kubernetes `v1.22` is [removing support](https://kubernetes.io/docs/reference/us
 
 The `Ingress` syntax is changing a bit. Sure, you could update them by hand, which I do often, but that is lame. I have hundreds upon hundreds of `Ingress` objects to convert, and I bet others do as well, so this should help.
 
-## This Tool's Purpose
+## What This Tool Does
 
 Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.io/v1beta1` _to_ `apiVersion: networking.k8s.io/v1`, modifying:
 
@@ -33,9 +33,9 @@ Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.
   - `serviceName`
   - `ServicePort` - either name (`str`) or port number (`int`)
 - Checks for `apiVersion` differences in the [Points of Interest](#points-of-interest) section.
-- (Optional) Injects a configurable `pathPrefix` into each `Ingress` object.
+- (Optional) Injects a configurable `pathType` into each `Ingress` object.
 - YAML Comments/order/formatting are preserved... mostly. It depends on their scope, but hey, I'm tryin'!
--
+- Skips over objects that do not fit the criteria to be converted.
 
 Requires Python `3.6`+
 
