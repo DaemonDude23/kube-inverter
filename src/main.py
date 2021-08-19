@@ -24,7 +24,7 @@ def init_arg_parser():
     try:
         parser = argparse.ArgumentParser(
             prog="kube-inverter",
-            description="Converts Kubernetes Ingress objects from 'networking.k8s.io/v1beta1' to 'networking.k8s.io/v1'",
+            description="converts Kubernetes Ingress objects from 'networking.k8s.io/v1beta1' to 'networking.k8s.io/v1'",
             formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         )
 
@@ -41,7 +41,7 @@ def init_arg_parser():
             "-o",
             dest="output_file",
             action="store",
-            help="Output file path. This disables an in-place update to the input file",
+            help="output file path. This disables an in-place update to the input file",
         )
         args.add_argument(
             "--path-type",
@@ -49,9 +49,9 @@ def init_arg_parser():
             "-p",
             dest="path_type",
             action="store",
-            help="Path Type for Ingress rule. Options: 'Exact', 'ImplementationSpecific', 'Prefix'",
+            help="path Type for Ingress rule. Options: 'Exact', 'ImplementationSpecific', 'Prefix'",
         )
-        args.add_argument("--version", "-v", action="version", version="v0.1.0")
+        args.add_argument("--version", "-v", action="version", version="v0.2.0")
         args.add_argument("input_file", action="store", type=str, help="input file")
         arguments = parser.parse_args()
 
@@ -173,15 +173,14 @@ def convert(arguments):
                     int_num_of_ingress_v1beta_converted += 1
 
             except KeyError as e:
-                logging.fatal("Failed to find expected keys in input YAML")
-                raise e
+                logging.warning(f"{input_file_path} - Failed to find expected keys in input YAML")
 
             yaml.dump(data)  # write updates to payload
 
-    logging.info(f"Number of documents found: {int_num_of_documents}")
-    logging.info(f"Number of v1beta Ingress documents found: {int_num_of_ingress_v1beta_documents}")
-    logging.info(f"Number of v1beta Ingress documents converted to v1: {int_num_of_ingress_v1beta_converted}")
-    logging.info(f"Number of v1 Ingress documents found: {int_num_of_ingress_v1_documents}")
+    logging.info(f"{input_file_path} - Number of documents found: {int_num_of_documents}")
+    logging.info(f"{input_file_path} - Number of v1beta Ingress documents found: {int_num_of_ingress_v1beta_documents}")
+    logging.info(f"{input_file_path} - Number of v1beta Ingress documents converted to v1: {int_num_of_ingress_v1beta_converted}")
+    logging.info(f"{input_file_path} - Number of v1 Ingress documents found: {int_num_of_ingress_v1_documents}")
 
     if arguments.output_file:
         ingress_yaml_file.rename(output_file_path)

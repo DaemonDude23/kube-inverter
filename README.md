@@ -10,7 +10,7 @@
       - [In-place Update Against Multiple Files](#in-place-update-against-multiple-files)
       - [Write to Separate File](#write-to-separate-file)
 - [Points of Interest](#points-of-interest)
-  - [Detail About The New API Version's `spec`](#detail-about-the-new-api-versions-spec)
+  - [Details About The New API Version's `spec`](#details-about-the-new-api-versions-spec)
     - [Calculate `diff` Between Versions](#calculate-diff-between-versions)
     - [`v1beta1`](#v1beta1)
     - [`v1`](#v1)
@@ -45,7 +45,7 @@ Requires Python `3.6`+
 
 1. Get the code
 ```bash
-git clone git clone https://github.com/DaemonDude/kube-inverter.git -b v0.1.0
+git clone git clone https://github.com/DaemonDude/kube-inverter.git -b v0.2.0
 ```
 2. Get into that directory
 ```bash
@@ -62,8 +62,8 @@ pip3 install -r ./src/requirements.txt
 
 ## CLI Usage
 
-- **By default, this will update your file in place**. If that's not desired, use `--dry-run` to test it, or write to a separate file with `--output-file`.
-- Only one file is updated per run. Wrap this script in a loop (see examples further down) to operate it against multiple files.
+- **By default, this will update your file in place**. If that's not desired, write to a separate file with `--output-file`.
+- Only one file is updated per run. Wrap this script in a loop (see examples further down) to operate against multiple files.
 
 ```
 usage: kube-inverter [-h] [--debug] [--output-file OUTPUT_FILE] [--path-type PATH_TYPE] [--version] input_file
@@ -101,12 +101,12 @@ find ./examples/in-place-update/ -type f -name '*.yaml' -exec kube-inverter '{}'
 ##### Write to Separate File
 
 ```bash
-find ./examples/multiple-documents/ -type f -name '*.yaml' -exec kube-inverter '{}' -o '{}'-out \;
+find ./examples/multiple-documents/ -type f -name '*.yaml' -exec kube-inverter --path-type Prefix '{}' -o '{}'-out \;
 ```
 
 ## Points of Interest
 
-### Detail About The New API Version's `spec`
+### Details About The New API Version's `spec`
 
 #### Calculate `diff` Between Versions
 
