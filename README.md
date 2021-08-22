@@ -3,6 +3,7 @@
 - [Why](#why)
 - [What This Tool Does](#what-this-tool-does)
 - [Install](#install)
+  - [Run Executable](#run-executable)
   - [Put it in Your `$PATH`](#put-it-in-your-path)
 - [CLI Usage](#cli-usage)
   - [Examples](#examples)
@@ -41,6 +42,10 @@ Requires Python `3.6`+
 
 ## Install
 
+### Run Executable
+
+[PyInstaller](https://www.pyinstaller.org/) is used to create a single-file executable. Find them under **Assets** in [Releases](https://github.com/DaemonDude23/kube-inverter/releases). Currently compiled on **Linux** X86_64. **Windows** is planned for the future. Let me know if this doesn't work for your circumstance.
+
 ### Put it in Your `$PATH`
 
 1. Get the code
@@ -53,7 +58,7 @@ cd ./kube-inverter
 ```
 3. Create symlink:
 ```bash
-sudo ln -s ${PWD}/src/main.py /usr/local/bin/kube-inverter
+sudo ln -s ${PWD}/src/kube-inverter.py /usr/local/bin/kube-inverter
 ```
 4. Install dependencies:
 ```bash
@@ -345,6 +350,8 @@ FIELDS:
 </details>
 
 ## Dev
+
+- [Build Docs](./docs/dev.md)
 
 ### Virtual Environment Setup
 

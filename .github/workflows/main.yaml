@@ -1,0 +1,26 @@
+# name: Package Application with Pyinstaller
+# on:
+#   push:
+#     branches: [ main ]
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: PyInstaller Linux
+#       uses: JackMcKew/pyinstaller-action-linux@0.1.4
+#       with:
+#         path: src
+#     - name: PyInstaller Windows
+#       uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+#       with:
+#         path: src
+#     - name: Upload Linux x86_64
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: kube-inverter-linux-v0.2.0
+#         path: dist/kube-inverter-linux-v0.2.0
+#     - name: Upload Windows x86_64
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: kube-inverter-linux-v0.2.0
+#         path: dist/kube-inverter-windows-v0.2.0
