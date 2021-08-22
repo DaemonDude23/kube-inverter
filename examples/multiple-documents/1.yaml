@@ -37,10 +37,10 @@ spec:
   - hosts: ["example.com"]
   rules:
   - host: "example.com"
-    pathType: ImplementationSpecific
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
           serviceName: example-site-2
           servicePort: http

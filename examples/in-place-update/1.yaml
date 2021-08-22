@@ -1,0 +1,40 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: a-service
+  labels:
+    # comment woo
+    asdf: "asdf-value"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts: ["example.com"]
+  rules:
+  - host: "example.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: a-service
+          servicePort: http
+      - path: /another/path
+        pathType: ImplementationSpecific
+        backend:
+          serviceName: another-service
+          servicePort: http-path
+      - path: /what
+        backend:
+          serviceName: yeah-service
+          servicePort: 8443
+  # say goodbye to this comment
+  - host: "example.com"
+    # blue 42
+    http:
+      paths:
+      - path: /assets
+        backend:
+          serviceName: assets-service
+          servicePort: 8080

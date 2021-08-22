@@ -1,0 +1,58 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#resource-backend
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-resource-backend
+spec:
+  rules:
+    # is there anybody out there?...
+  - http:
+      paths:
+      - path: /icons
+        backend:
+          resource:
+            apiGroup: k8s.example.com
+            kind: StorageBucket
+            name: icon-assets
+  backend:
+    resource:
+      apiGroup: k8s.example.com
+      kind: StorageBucket
+      name: static-assets
+    serviceName: ingress-resource-backend-svc
+    servicePort: http-backend
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: example-site-2
+  labels:
+    # comment woo
+    austin-powers: "yeah-baby"
+    austin-powers/mini-me: "was here"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts: ["example.com"]
+  rules:
+  - host: "example.com"
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          serviceName: example-site-2
+          servicePort: http
+      - path: /another/path
+        backend:
+          serviceName: example-site-2
+          servicePort: http-another-path
+  - host: "example.com"
+    # blue 42
+    http:
+      paths:
+      - path: /assets
+        backend:
+          serviceName: assets-service
+          servicePort: 8080

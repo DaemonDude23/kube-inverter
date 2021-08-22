@@ -4,8 +4,8 @@
       "args": [
         "--debug",
         "--output-file",
-        "./examples/multiple-documents/output-1.yaml",
-        "./examples/multiple-documents/input-1.yaml"
+        "./examples/multiple-documents/output/1.yaml",
+        "./examples/multiple-documents/1.yaml"
       ],
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
@@ -17,7 +17,23 @@
     {
       "args": [
         "--debug",
-        "./examples/in-place-update/input-1.yaml"
+        "--path-type",
+        "Prefix",
+        "--output-file",
+        "./examples/multiple-documents/output/2.yaml",
+        "./examples/multiple-documents/2.yaml"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "name": "path-type",
+      "program": "${workspaceFolder}/src/main.py",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "args": [
+        "--debug",
+        "./examples/in-place-update/1.yaml"
       ],
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",

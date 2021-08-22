@@ -45,7 +45,7 @@ Requires Python `3.6`+
 
 1. Get the code
 ```bash
-git clone git clone https://github.com/DaemonDude/kube-inverter.git -b v0.2.0
+git clone https://github.com/DaemonDude/kube-inverter.git -b v0.2.0
 ```
 2. Get into that directory
 ```bash
@@ -57,7 +57,7 @@ sudo ln -s ${PWD}/src/main.py /usr/local/bin/kube-inverter
 ```
 4. Install dependencies:
 ```bash
-pip3 install -r ./src/requirements.txt
+pip3 install -U -r ./src/requirements.txt
 ```
 
 ## CLI Usage
@@ -86,10 +86,21 @@ optional arguments:
 
 _See [examples](examples/) folder._
 
+The GIF below was generated with these commands:
+
+```bash
+cat ./examples/in-place-update/1.yaml && sleep 5s && \
+kube-inverter --path-type Prefix ./examples/in-place-update/1.yaml && sleep 5s && \
+cat ./examples/in-place-update/1.yaml && sleep 5s && \
+kubectl apply --dry-run=server -f ./examples/in-place-update/1.yaml && sleep 5s
+```
+
+![Example GIF](./docs/images/example-1.gif)
+
 #### Linux
 
 ```bash
-kube-inverter ./examples/in-place-update/input-1.yaml
+kube-inverter ./examples/in-place-update/1.yaml
 ```
 
 ##### In-place Update Against Multiple Files
@@ -342,5 +353,5 @@ FIELDS:
 ./venv/bin/python -m pip install --upgrade pip
 virtualenv --python=python3.9 ./venv/
 source ./venv/bin/activate
-pip3 install -r ./src/requirements.txt
+pip3 install -U -r ./src/requirements.txt
 ```
