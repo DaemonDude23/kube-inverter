@@ -4,7 +4,7 @@
 - [What This Tool Does](#what-this-tool-does)
 - [Install](#install)
   - [Run Executable](#run-executable)
-  - [Put it in Your `$PATH`](#put-it-in-your-path)
+  - [PIP + `$PATH`](#pip--path)
 - [CLI Usage](#cli-usage)
   - [Examples](#examples)
     - [Linux](#linux)
@@ -30,27 +30,40 @@ The `Ingress` syntax is changing a bit. Sure, you could update them by hand, whi
 
 Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.io/v1beta1` _to_ `apiVersion: networking.k8s.io/v1`, modifying:
 
+- Checks for `apiVersion` differences in the [Points of Interest](#points-of-interest) section.
 - The keys/values for:
   - `serviceName`
   - `ServicePort` - either name (`str`) or port number (`int`)
-- Checks for `apiVersion` differences in the [Points of Interest](#points-of-interest) section.
 - (Optional) Injects a configurable `pathType` into each `Ingress` object.
 - YAML Comments/order/formatting are preserved... mostly. It depends on their scope, but hey, I'm tryin'!
 - Skips over objects that do not fit the criteria to be converted.
 
-Requires Python `3.6`+
-
 ## Install
+
+Written in Python `3.6`+
 
 ### Run Executable
 
 [PyInstaller](https://www.pyinstaller.org/) is used to create a single-file executable. Find them under **Assets** in [Releases](https://github.com/DaemonDude23/kube-inverter/releases). Currently compiled on **Linux** X86_64. **Windows** is planned for the future. Let me know if this doesn't work for your circumstance.
 
-### Put it in Your `$PATH`
+1. Get the code
+```bash
+git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.2.0
+```
+2. Get into that directory
+```bash
+cd ./kube-inverter
+```
+3. Create symlink:
+```bash
+sudo ln -s ${PWD}/src/kube-inverter.py /usr/local/bin/kube-inverter
+```
+
+### PIP + `$PATH`
 
 1. Get the code
 ```bash
-git clone https://github.com/DaemonDude/kube-inverter.git -b v0.2.0
+git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.2.0
 ```
 2. Get into that directory
 ```bash
