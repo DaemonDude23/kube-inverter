@@ -17,6 +17,10 @@ jobs:
       with:
         path: src
         spec: kube-inverter-windows-x86_64.spec
+    - name: Run commands
+      run: |
+        ls -al dist
+        ls -al dist/linux/
     - name: Upload Linux x86_64
       uses: actions/upload-artifact@v2
       with:
