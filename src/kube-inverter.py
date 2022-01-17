@@ -141,7 +141,7 @@ def convert(arguments):
                             data["spec"]["defaultBackend"]["service"]["port"] = {"name": str(service_port)}
 
                     except KeyError:
-                        logging.debug("Document is missing the serviceName in its rules. That is okay.")
+                        logging.debug("Document is missing the ServicePort in its rules. That is okay.")
 
                     # rules
                     for rule in data["spec"]["rules"]:
