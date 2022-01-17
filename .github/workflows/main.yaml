@@ -9,11 +9,11 @@ jobs:
     - name: PyInstaller Linux
       uses: JackMcKew/pyinstaller-action-linux@0.1.4
       with:
-        path: src
+        path: ./src/
     - name: PyInstaller Windows
       uses: JackMcKew/pyinstaller-action-windows@v0.1.2
       with:
-        path: src
+        path: ./src/
     - name: Upload Linux x86_64
       uses: actions/upload-artifact@v2
       with:
