@@ -9,11 +9,13 @@ jobs:
     - name: PyInstaller Linux
       uses: JackMcKew/pyinstaller-action-linux@0.1.4
       with:
-        path: ./src/
+        path: src
+        spec: kube-inverter-linux-x86_64.spec
     - name: PyInstaller Windows
       uses: JackMcKew/pyinstaller-action-windows@v0.1.2
       with:
-        path: ./src/
+        path: src
+        spec: kube-inverter-windows-x86_64.spec
     - name: Upload Linux x86_64
       uses: actions/upload-artifact@v2
       with:
