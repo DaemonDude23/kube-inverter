@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: PyInstaller Linux
-      uses: JackMcKew/pyinstaller-action-linux@v0.1.4
+      uses: JackMcKew/pyinstaller-action-linux@0.1.4
       with:
         path: src
         spec: kube-inverter-linux-x86_64.spec
