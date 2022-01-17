@@ -19,6 +19,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       # if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: pyinstaller
         files: |
           src/dist/linux/kube-inverter-linux-x86_64
           src/dist/linux/kube-inverter-windows-x86_64
