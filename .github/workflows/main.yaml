@@ -2,6 +2,8 @@ name: Package Application with Pyinstaller
 on:
   push:
     branches: [ pyinstaller ]
+    # tags:
+    # - 'v*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,20 +14,26 @@ jobs:
       with:
         path: src
         spec: kube-inverter-linux-x86_64.spec
+    - name: version
+      run: echo "::set-output name=version::$(python src/dist/linux/kube-inverter-linux-x86_64 --version)"
+      id: version
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: src/dist/linux/kube-inverter-linux-x86_64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # - name: PyInstaller Windows
     #   uses: JackMcKew/pyinstaller-action-windows@v0.1.2
     #   with:
     #     path: src
     #     spec: kube-inverter-windows-x86_64.spec
-    - name: Run commands
-      run: |
-        ls -al .
-    - name: Upload Linux x86_64
-      uses: actions/upload-artifact@v2
-      with:
-        name: kube-inverter-linux-x86_64
-        path: src/dist/linux/kube-inverter-linux-x86_64
-        if-no-files-found: error
+    # - name: Upload Linux x86_64
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: kube-inverter-linux-x86_64
+    #     path: src/dist/linux/kube-inverter-linux-x86_64
+    #     if-no-files-found: error
     # - name: Upload Windows x86_64
     #   uses: actions/upload-artifact@v2
     #   with:
