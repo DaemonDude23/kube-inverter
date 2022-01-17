@@ -30,4 +30,4 @@ jobs:
         fail_on_unmatched_files: true
         files: |
           src/dist/linux/kube-inverter-linux-x86_64
-          src/dist/linux/kube-inverter-windows-x86_64
+          src/dist/windows/kube-inverter-windows-x86_64
