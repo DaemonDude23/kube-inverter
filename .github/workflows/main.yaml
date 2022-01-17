@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Run commands
+      run: |
+        pwd
+        ls -al
     - name: PyInstaller Linux
       uses: JackMcKew/pyinstaller-action-linux@0.1.4
       with:
@@ -16,13 +20,13 @@ jobs:
       with:
         path: src
         spec: kube-inverter-windows-x86_64.spec
-    - name: Upload Linux x86_64
-      uses: actions/upload-artifact@v2
-      with:
-        name: kube-inverter-linux-v0.2.0
-        path: dist/kube-inverter-linux-v0.2.0
-    - name: Upload Windows x86_64
-      uses: actions/upload-artifact@v2
-      with:
-        name: kube-inverter-linux-v0.2.0
-        path: dist/kube-inverter-windows-v0.2.0
+    # - name: Upload Linux x86_64
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: kube-inverter-linux-v0.2.0
+    #     path: dist/kube-inverter-linux-v0.2.0
+    # - name: Upload Windows x86_64
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: kube-inverter-linux-v0.2.0
+    #     path: dist/kube-inverter-windows-v0.2.0
