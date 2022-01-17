@@ -1,9 +1,7 @@
 # TODO
 
+- If a path is given, look for YAML files recursively, bypassing the need for the user to implement a loop.
 - Testing and validation (`kubectl kustomize --dry-run=client /path/to/ingress` with `find`)
-- Windows
-  - Test
-  - Docs
 - Ensure temp file gets deleted no matter the exception.
 
 ## One Day...

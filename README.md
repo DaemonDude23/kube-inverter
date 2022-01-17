@@ -44,7 +44,7 @@ Written in Python `3.6`+
 
 ### Run Executable
 
-[PyInstaller](https://www.pyinstaller.org/) is used to create a single-file executable. Find them under **Assets** in [Releases](https://github.com/DaemonDude23/kube-inverter/releases). Currently compiled on **Linux** X86_64. **Windows** is planned for the future. Let me know if this doesn't work for your circumstance.
+**[PyInstaller](https://www.pyinstaller.org/) is used to create a single-file executable. Find them under **Assets** in [Releases](https://github.com/DaemonDude23/kube-inverter/releases).** Alternatively...
 
 1. Get the code
 ```bash

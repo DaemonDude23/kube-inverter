@@ -51,7 +51,7 @@ def init_arg_parser():
             action="store",
             help="path Type for Ingress rule. Options: 'Exact', 'ImplementationSpecific', 'Prefix'",
         )
-        args.add_argument("--version", "-v", action="version", version="v0.2.0")
+        args.add_argument("--version", "-v", action="version", version="v0.3.0")
         args.add_argument("input_file", action="store", type=str, help="input file")
         arguments = parser.parse_args()
 
@@ -141,7 +141,7 @@ def convert(arguments):
                             data["spec"]["defaultBackend"]["service"]["port"] = {"name": str(service_port)}
 
                     except KeyError:
-                        logging.debug("Document is missing the serviceName in its rules. That is okay.")
+                        logging.debug("Document is missing the ServicePort in its rules. That is okay.")
 
                     # rules
                     for rule in data["spec"]["rules"]:
