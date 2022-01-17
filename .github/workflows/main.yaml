@@ -12,24 +12,23 @@ jobs:
       with:
         path: src
         spec: kube-inverter-linux-x86_64.spec
-    - name: PyInstaller Windows
-      uses: JackMcKew/pyinstaller-action-windows@v0.1.2
-      with:
-        path: src
-        spec: kube-inverter-windows-x86_64.spec
+    # - name: PyInstaller Windows
+    #   uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+    #   with:
+    #     path: src
+    #     spec: kube-inverter-windows-x86_64.spec
     - name: Run commands
       run: |
-        ls -al dist
-        ls -al dist/linux/
+        ls -al .
     - name: Upload Linux x86_64
       uses: actions/upload-artifact@v2
       with:
         name: kube-inverter-linux-x86_64
         path: dist/linux/kube-inverter-linux-x86_64
         if-no-files-found: error
-    - name: Upload Windows x86_64
-      uses: actions/upload-artifact@v2
-      with:
-        name: kube-inverter-windows-x86_64
-        path: dist/windows/kube-inverter-windows-x86_64.exe
-        if-no-files-found: error
+    # - name: Upload Windows x86_64
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: kube-inverter-windows-x86_64
+    #     path: dist/windows/kube-inverter-windows-x86_64.exe
+    #     if-no-files-found: error
