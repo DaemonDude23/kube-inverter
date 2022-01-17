@@ -21,9 +21,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: kube-inverter-linux-v0.2.0
-        path: dist/kube-inverter-linux-x86_64
+        path: dist/linux/kube-inverter-linux-x86_64
     - name: Upload Windows x86_64
       uses: actions/upload-artifact@v2
       with:
         name: kube-inverter-linux-v0.2.0
-        path: dist/kube-inverter-windows-x86_64
+        path: dist/windows/kube-inverter-windows-x86_64
