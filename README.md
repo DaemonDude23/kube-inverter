@@ -1,7 +1,7 @@
 **kube-inverter**
 
-- [Why](#why)
 - [What This Tool Does](#what-this-tool-does)
+- [Why](#why)
 - [Install](#install)
   - [Run Executable](#run-executable)
   - [PIP + `$PATH`](#pip--path)
@@ -20,12 +20,6 @@
 
 ---
 
-## Why
-
-Kubernetes `v1.22` is [removing support](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for the `v1beta` **apiVersion** for **Ingress** objects, not just _deprecating_ it. And `kubectl convert` was [deprecated](https://github.com/kubernetes/kubectl/issues/725#convert-as-a-plugin) back in 1.17.
-
-The `Ingress` syntax is changing a bit. Sure, you could update them by hand, which I do often, but that is lame. I have hundreds upon hundreds of `Ingress` objects to convert, and I bet others do as well, so this should help.
-
 ## What This Tool Does
 
 Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.io/v1beta1` _to_ `apiVersion: networking.k8s.io/v1`, modifying:
@@ -38,6 +32,13 @@ Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.
 - YAML Comments/order/formatting are preserved... mostly. It depends on their scope, but hey, I'm tryin'!
 - Skips over objects that do not fit the criteria to be converted.
 
+## Why
+
+Kubernetes `v1.22` is [removing support](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for the `v1beta` **apiVersion** for **Ingress** objects, not just _deprecating_ it. And `kubectl convert` was [deprecated](https://github.com/kubernetes/kubectl/issues/725#convert-as-a-plugin) back in 1.17.
+
+The `Ingress` syntax is changing a bit. Sure, you could update them by hand, which I do often, but that is lame. I have hundreds upon hundreds of `Ingress` objects to convert, and I bet others do as well, so this should help.
+
+
 ## Install
 
 Written in Python `3.6`+
@@ -48,7 +49,7 @@ Written in Python `3.6`+
 
 1. Get the code
 ```bash
-git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.2.0
+git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.3.0
 ```
 2. Get into that directory
 ```bash
@@ -63,7 +64,7 @@ sudo ln -s ${PWD}/src/kube-inverter.py /usr/local/bin/kube-inverter
 
 1. Get the code
 ```bash
-git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.2.0
+git clone https://github.com/DaemonDude23/kube-inverter.git -b v0.3.0
 ```
 2. Get into that directory
 ```bash
