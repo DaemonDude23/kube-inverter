@@ -34,7 +34,7 @@ Converts **Kubernetes** `Ingress` YAML objects with `apiVersion: networking.k8s.
 
 ## Why
 
-Kubernetes `v1.22` is [removing support](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for the `v1beta` **apiVersion** for **Ingress** objects, not just _deprecating_ it. And `kubectl convert` was [deprecated](https://github.com/kubernetes/kubectl/issues/725#convert-as-a-plugin) back in 1.17.
+Kubernetes `v1.22` is [removing support](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#ingress-v122) for the `v1beta1` **apiVersion** for **Ingress** objects, not just _deprecating_ it. And `kubectl convert` was [deprecated](https://github.com/kubernetes/kubectl/issues/725#convert-as-a-plugin) back in 1.17.
 
 The `Ingress` syntax is changing a bit. Sure, you could update them by hand, which I do often, but that is lame. I have hundreds upon hundreds of `Ingress` objects to convert, and I bet others do as well, so this should help.
 
@@ -371,8 +371,8 @@ FIELDS:
 
 ```bash
 # assuming virtualenv is already installed...
-./venv/bin/python -m pip install --upgrade pip
 virtualenv --python=python3.9 ./venv/
 source ./venv/bin/activate
+./venv/bin/python -m pip install --upgrade pip
 pip3 install -U -r ./src/requirements.txt
 ```
